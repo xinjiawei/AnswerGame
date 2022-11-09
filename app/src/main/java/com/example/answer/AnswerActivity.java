@@ -64,19 +64,6 @@ public class AnswerActivity extends AppCompatActivity {
             questionList.add(question);
         }
 
-//        for (int i = 0; i < 11; i++) {
-//            ArrayList<Pair<String, String>> pairs = new ArrayList<>();
-//            pairs.add(new Pair<>("A", "选项"));
-//            pairs.add(new Pair<>("B", "选项"));
-//            pairs.add(new Pair<>("C", "选项"));
-//            pairs.add(new Pair<>("D", "选项"));
-//            pairs.add(new Pair<>("E", "选项"));
-//            question.setDescribe(arrayDescribe[i]);
-//            question.setAnswer(2);
-//            question.setOption(pairs);
-//            questionList.add(question);
-//        }
-
 
         // ==========================================================================================
 

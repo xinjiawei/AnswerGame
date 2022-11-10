@@ -6,9 +6,10 @@ import java.util.List;
 
 public class Question {
 
-    private String describe;  //问题
-    private int answer;       //答案，答案为选项顺序，1开始，例如下面选项option列表中，有4个选项ABCD，那么1就对应A选项
-    private List<Pair<String, String>> option; //答案选项，是一个List集合
+    private String describe;  //question
+    private int answer;       //Answer, the answer is the order of the options, starting with 1, for example,
+    // in the following option list, there are four options ABCD, then 1 corresponds to choice A
+    private List<Pair<String, String>> option; //The answer choices are a List
 
     public Question() {
     }

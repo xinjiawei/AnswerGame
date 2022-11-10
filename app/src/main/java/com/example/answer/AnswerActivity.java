@@ -16,8 +16,12 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 
+import org.scilab.forge.jlatexmath.core.AjLatexMath;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import io.github.kbiakov.codeview.classifier.CodeProcessor;
 
 public class AnswerActivity extends AppCompatActivity {
 
@@ -40,24 +44,63 @@ public class AnswerActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.WHITE);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
+        //init flexiblerichtextview
+        AjLatexMath.init(this);
+        //code highlight
+        CodeProcessor.init(this);
 
-        // ==========================================================================================
-        // 问题在这里设置，每一个问题是一个Question对象，只需要new Question()填充数据， 然后
-        // 添加到questionList(ArrayList)
-        // 即可，问题可以不为11个
+        // ========================================================================
 
 
-        String[] arrayDescribe = {"01","02","03","04","05","06","07","08","09","10","11"};
-        int[] targetSelect = {1,1,1,1,1,1,1,1,1,1,1};
-        String[][] Answers={{"00","01","00","01"},{"10","11","00","01"},{"20","21","00","01"}};
+        String[] arrayDescribe = {
+                "1+1=?" ,
+                "7/0=?",
+                "$$f(n) = \\begin{cases} \\frac{n}{2}-1, & \\text{if } n\\text{ is even} \\\\ 3n+1, & \" +\n" +
+                        "                \"\\text{if } n\\text{ is odd} \\end{cases}$$, When $$n = ff(2)$$, " +
+                        "what\r is\r the\r result\r of\r",
+                "$$f(x+4)=\\frac{x+30}{x} \\sqrt{x+4}$$, When $$x = 64$$, " +
+                        "what\r is\r the\r result\r of\r",
+                "$$ \\[f(x,y,z) = 3y^2 z \\left( 3 + \\frac{7x+5}{2 + y^2} \\right)\\] $$, then $$f(1,2,3)=?$$",
+                "$$y=x^2+2x+3,$$ What\r is\r the\r result\r of\r$$\\left. \\frac{du}{dx} \\right|_{x=0}.$$",
+                "$$ P(x|c)=\\frac{P(c|x)\\cdot P(x)}{P(x)} $$, is it right?",
+                "$$ \\sum_{i=1}^n \\frac{i(i+1)}2 $$, What\r is\r the\r result\r when\r $$n$$ equal\r $$3$$ ?",
+                "$$ f(x)=\\int_{-\\infty}^x e^{-t^2}dt $$, What\r is\r the\r result\r of\r in\r JAVA",
+                "$$ \\cos 2\\theta  = \\cos^2 \\theta - \\sin^2 \\theta = 1 - 2 \\cos^2 \\theta. $$, is it right?",
+                "$$A = \\det\\begin{bmatrix}" +
+                "0&\\cdots&0&1&3&6" +
+                "\\\\\\vdots&\\ddots&\\vdots&3&8&6\\" +
+                "\\0&\\cdots&0&5&6&9" +
+                        "\\\\1&2&3&0&\\cdots&0" +
+                        "\\\\2&3&0&\\vdots&\\ddots&\\vdots\\" +
+                        "\\3&4&1&0&\\cdots&0" +
+                        "\\\\\\end{bmatrix}$$, what is $$|A|$$"
+        };
 
-        for (int i = 0; i < 2; i++) {
+        int[] targetSelect = {2,3,3,3,4,1,1,3,2,2,3};
+        String[][] Answers={
+                {"1","2","3","4"},
+                {"7","null","expection","error"},
+                {"0","1","-2","2"},
+                {"≈8.25","≈9.72","9","7.5"},
+                {"128","216","324","180"},
+                {"2","3","5","0"},
+                {"T","F","",""},
+                {"12","18","9","6"},
+                {"Math.pow(3.14, 2.0)/2","Math.sqrt(3.14)/2","Math.abs(3.14, 2.0)/2","Math.round(3.14)/2"},
+                {"T","F","",""},
+                {"-234","110","-636","-348"},
+        };
+
+        for (int i = 0; i < 11; i++) {
             Question question = new Question();
             ArrayList<Pair<String, String>> list = new ArrayList<>();
-            list.add(new Pair<>("A", Answers[i][0]));
-            list.add(new Pair<>("B", Answers[i][1]));
-            list.add(new Pair<>("C", Answers[i][2]));
-            list.add(new Pair<>("D", Answers[i][3]));
+            if(Answers[i][0] != "") list.add(new Pair<>("A", Answers[i][0]));
+            if(Answers[i][1] != "") list.add(new Pair<>("B", Answers[i][1]));
+            if(Answers[i][2] != "") list.add(new Pair<>("C", Answers[i][2]));
+            if(Answers[i][3] != "") list.add(new Pair<>("D", Answers[i][3]));
+
+
+
             question.setDescribe(arrayDescribe[i]);
             question.setAnswer(targetSelect[i]);
             question.setOption(list);

@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.daquexian.flexiblerichtextview.FlexibleRichTextView;
+
 import java.util.Objects;
 
 public class QuestionFragment extends Fragment {
@@ -38,10 +40,20 @@ public class QuestionFragment extends Fragment {
         }
         globalViewModel = new ViewModelProvider(requireActivity()).get(GlobalViewModel.class);
 
-        TextView title = view.findViewById(R.id.title);
-        title.setText(question.getDescribe());
+//        TextView title = view.findViewById(R.id.title);
+//        title.setText(question.getDescribe());
 
-        //设置RecyclerView 答案选项
+        //--
+        FlexibleRichTextView flexibleRichTextView = view.findViewById(R.id.id_rich_tv);
+        StringBuilder stringBuilder = new StringBuilder();
+        //stringBuilder.append("$$\\sum_{i=1}^n a_i=0$$,");
+        stringBuilder.append(question.getDescribe());
+        //stringBuilder.append("\r\n");
+        flexibleRichTextView.setText(stringBuilder.toString());
+        //--
+
+        //Set the RecyclerView answer option
+
         RecyclerView optionList = view.findViewById(R.id.option);
         AnswerOptionAdapter answerOptionAdapter = new AnswerOptionAdapter();
         optionList.setAdapter(answerOptionAdapter);

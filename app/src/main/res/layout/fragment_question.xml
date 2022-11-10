@@ -6,8 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".QuestionFragment">
 
-    <TextView
-        android:id="@+id/title"
+<!--    <TextView-->
+<!--        android:id="@+id/title"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:padding="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <com.daquexian.flexiblerichtextview.FlexibleRichTextView
+        android:id="@+id/id_rich_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -23,6 +34,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/id_rich_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

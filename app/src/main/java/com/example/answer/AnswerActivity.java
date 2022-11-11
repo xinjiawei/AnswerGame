@@ -20,6 +20,7 @@ import org.scilab.forge.jlatexmath.core.AjLatexMath;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import io.github.kbiakov.codeview.classifier.CodeProcessor;
 
@@ -54,7 +55,7 @@ public class AnswerActivity extends AppCompatActivity {
 
         String[] arrayDescribe = {
                 "1+1=?" ,
-                "7/0=?",
+                "7/0=? what\r is\r the\r result\r of\r in\r JAVA",
                 "$$f(n) = \\begin{cases} \\frac{n}{2}-1, & \\text{if } n\\text{ is even} \\\\ 3n+1, & \" +\n" +
                         "                \"\\text{if } n\\text{ is odd} \\end{cases}$$, When $$n = ff(2)$$, " +
                         "what\r is\r the\r result\r of\r",
@@ -75,11 +76,12 @@ public class AnswerActivity extends AppCompatActivity {
                         "\\3&4&1&0&\\cdots&0" +
                         "\\\\\\end{bmatrix}$$, what is $$|A|$$"
         };
+        //int ss = 7 / 0;
 
-        int[] targetSelect = {2,3,3,3,4,1,1,3,2,2,3};
+        int[] targetSelect = {2,2,3,3,4,1,1,3,2,2,4};
         String[][] Answers={
                 {"1","2","3","4"},
-                {"7","null","expection","error"},
+                {"7","overflow","expection","error"},
                 {"0","1","-2","2"},
                 {"≈8.25","≈9.72","9","7.5"},
                 {"128","216","324","180"},
@@ -94,10 +96,10 @@ public class AnswerActivity extends AppCompatActivity {
         for (int i = 0; i < 11; i++) {
             Question question = new Question();
             ArrayList<Pair<String, String>> list = new ArrayList<>();
-            if(Answers[i][0] != "") list.add(new Pair<>("A", Answers[i][0]));
-            if(Answers[i][1] != "") list.add(new Pair<>("B", Answers[i][1]));
-            if(Answers[i][2] != "") list.add(new Pair<>("C", Answers[i][2]));
-            if(Answers[i][3] != "") list.add(new Pair<>("D", Answers[i][3]));
+            if(!Objects.equals(Answers[i][0], "")) list.add(new Pair<>("A", Answers[i][0]));
+            if(!Objects.equals(Answers[i][1], "")) list.add(new Pair<>("B", Answers[i][1]));
+            if(!Objects.equals(Answers[i][2], "")) list.add(new Pair<>("C", Answers[i][2]));
+            if(!Objects.equals(Answers[i][3], "")) list.add(new Pair<>("D", Answers[i][3]));
 
 
 
